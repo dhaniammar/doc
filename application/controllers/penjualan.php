@@ -46,6 +46,42 @@ class penjualan extends CI_Controller {
         }
         echo json_encode($data);
     }
+
+    public function tambah_penjualan(){
+        $post = $this->input->post();
+
+        $tgl_jatuh_tempo = date('Y-m-d', strtotime($post['tgl_transaksi'] . ' +'.$post['tempo'].' day'));//tgl transaksi + tempo
+        $randomNumber = rand(10000, 99999);
+        $no_invoice = "INV-".date('md').$randomNumber;
+
+        $data_transaksi = array(
+            'no_invoice' => $no_invoice,
+            'id_customer' => $post['id_customer'],
+            'tgl_transaksi' => $post['tgl_transaksi'],
+            'total_pembayaran' => $post['total_pembayaran'],
+            'total_harga' => $post['total_penjualan'],
+            'tgl_jatuh_tempo' => $tgl_jatuh_tempo,
+            'total_barang' => 0,
+
+        );
+
+        $this->db->insert('penjualan', $data_transaksi);
+        $id_penjualan = $this->db->insert_id();
+
+        for ($i=0; $i < count ($post['id_produk']) ; $i++){
+            $data_produk = array(
+                'id_penjualan' => $id_penjualan,
+                'id_produk' => $post['id_produk'][$i],
+                'qty' => $post['qty'][$i],
+                'diskon' => $post['diskon'][$i],
+            );
+
+            $this->db->insert('detail_penjualan', $data_produk);
+
+        }
+
+        redirect('penjualan','refresh');
+    }
 }
 
 ?>
