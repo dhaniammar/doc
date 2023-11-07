@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Simple Tables</title>
+  <title>Jurnal Toko</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -169,7 +169,7 @@
     <!-- Brand Logo -->
     <a href="<?php echo base_url("assets/"); ?>index3.html" class="brand-link">
       <img src="<?php echo base_url("assets/"); ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">JAC Coding</span>
     </a>
 
     <!-- Sidebar -->
@@ -180,7 +180,7 @@
           <img src="<?php echo base_url("assets/"); ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Dhani Ammar</a>
         </div>
       </div>
 
@@ -201,6 +201,16 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               
+          <li class="nav-item">
+            <a href="<?= base_url('dashboard')?>" class="nav-link">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>
+                Dashboard
+                <!-- <span class="badge badge-info right">2</span> -->
+              </p>
+            </a>
+          </li>    
 
           <li class="nav-item">
             <a href="<?= base_url('produk')?>" class="nav-link">
@@ -227,6 +237,16 @@
               <i class="nav-icon fas fa-coins"></i>
               <p>
                 Supplier
+                <!-- <span class="badge badge-info right">2</span> -->
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<?= base_url('Penjualan')?>" class="nav-link">
+              <i class="nav-icon fas fa-dollar-sign"></i>
+              <p>
+                Penjualan
                 <!-- <span class="badge badge-info right">2</span> -->
               </p>
             </a>

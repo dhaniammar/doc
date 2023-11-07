@@ -19,15 +19,27 @@
                       <th>Nomor</th>
                       <th>No. Invoice</th>
                       <th>Nama Customer</th>
-                      <th>Total Barang</th>
                       <th>Total Harga</th>
                       <th>Jatuh Tempo</th>
-                      <th>Status</th>
+                      <!-- <th>Status</th> -->
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-                    
+                    <?php 
+                    $no = 1;
+                    foreach ($data_penjualan as $penjualan) {?>
+                      <tr>
+                      <td><?= $no++ ?></td>
+                      <td><?= $penjualan->no_invoice; ?></td>
+                      <td><?= $penjualan->nama_customer; ?></td>
+                      <td><?= $penjualan->total_harga; ?></td>
+                      <td><?= $penjualan->tgl_jatuh_tempo; ?></td>
+                      <!-- <td>Status</td> -->
+                      <td><a href="<?= base_url('penjualan/detail/'.$penjualan->id); ?>" class="btn btn-warning" >Detail</a>
+                      <button class ="btn btn-danger btn-delete" data-id="<?= $penjualan->id?>"><i class="fas fa-trash"></i></button></td>
+                    </tr>
+                    <?php } ?>
                   </tbody>
                 </table>
               </div>
@@ -43,111 +55,6 @@
     
         <script>
         $(document).ready(function(){
-            $('#btnSubmit').click(function(){
-              console.log('test')
-            var formData = new FormData($('#addForm')[0]);
-                $.ajax({
-                    url:"<?php echo base_url('produk/add_actions'); ?>",
-                    type: "POST",
-                    cache: false,
-                    processData: false,
-                    contentType : false,
-                    data: formData,
-                    dataType: 'json',
-                    success: function(result){
-                      console.log(result);
-                        if(result.status == true){
-                          Swal.fire({
-                            title: "Success",
-                            text: "Your data has been successfully saved",
-                            icon: "success",
-                            confirmButtonText: "Done",
-                            customClass: {
-                              confirmButton: "btn btn-primary"
-                            }
-                          }).then((result)=>{
-                            window.location.reload();
-                          });
-                        }else{
-                          Swal.fire({
-                            title: "Error",
-                            text: result.message,
-                            icon: "error",
-                            confirmButtonText: "Confirm",
-                            customClass: {
-                              confirmButton: "btn btn-primary"
-                            }
-                          })
-                          
-                        }
-                    },
-                    error: function(xhr, status, error){
-
-                    }
-                });
-            });
-
-            $('.btn-edit').on("click", function(){
-              var id = $(this).data('id');
-
-              $.ajax({
-                url:"<?php echo base_url('produk/edit_produk'); ?>",
-                    type: "POST",
-                    cache: false,
-                    data: {
-                      id:id
-                    },
-                    dataType: 'json',
-                    success: function(result){
-                      var data = result.data;
-                      $('#nama_produk').val(data.nama_produk);
-                      $('#harga_beli').val(data.harga_beli);
-                      $('#harga_jual').val(data.harga_jual);
-                      $('#varian').val(data.varian);
-                      $('#stok').val(data.stok);
-                      $('#id').val(data.id);
-                      $('#display_foto_produk').html('<img src="<?= base_url('uploads/produk/') ?>'+data.foto_produk+'" width="100px" alt="">');
-                      $('#modal-edit').modal('show');
-                    }
-              })
-
-            })
-
-            $('#btnEdit').click(function(){
-              console.log('test')
-            var formData = new FormData($('#editForm')[0]);
-                $.ajax({
-                    url:"<?php echo base_url('produk/update'); ?>",
-                    type: "POST",
-                    cache: false,
-                    processData: false,
-                    contentType : false,
-                    data: formData,
-                    dataType: 'json',
-                    success: function(result){
-                      console.log(result);
-                        if(result.status == true){
-                          Swal.fire({
-                            title: "Success",
-                            text: "Your data has been successfully saved",
-                            icon: "success",
-                            confirmButtonText: "Done",
-                            customClass: {
-                              confirmButton: "btn btn-primary"
-                            }
-                          }).then((result)=>{
-                            window.location.reload();
-                          });
-                        }else{
-
-                        }
-                    },
-                    error: function(xhr, status, error){
-
-                    }
-                });
-            });
-
             $('.btn-delete').on("click", function(){
               var id = $(this).data('id');
 
@@ -160,7 +67,7 @@
                 if (result.isConfirmed){
 
                   $.ajax({
-                    url:"<?php echo base_url('produk/delete'); ?>",
+                    url:"<?php echo base_url('penjualan/delete'); ?>",
                     type: "POST",
                     cache: false,
                     data: {
