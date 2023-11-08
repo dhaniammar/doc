@@ -252,6 +252,16 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="<?= base_url('user')?>" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                User
+                <!-- <span class="badge badge-info right">2</span> -->
+              </p>
+            </a>
+          </li>
+
           
         </ul>
       </nav>
