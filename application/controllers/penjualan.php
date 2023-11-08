@@ -6,6 +6,9 @@ class penjualan extends CI_Controller {
     {
 
         parent::__construct();
+        if ($this->session->userdata('login') != 1){
+            redirect('login');
+        }
         $this->load->model('penjualan_model','penjualan');
     }
 
