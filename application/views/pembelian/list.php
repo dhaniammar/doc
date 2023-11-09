@@ -1,4 +1,4 @@
-           <!-- /.row -->
+    <!-- /.row -->
     <div class="row">
           <div class="col-12">
             <div class="card mt-5">
@@ -6,7 +6,7 @@
                 <h3 class="card-title"><?= $title; ?></h3>
 
                 <div class="card-tools">
-                <a href="<?= base_url('penjualan/form'); ?>" class="btn btn-primary">
+                <a href="<?= base_url('pembelian/form'); ?>" class="btn btn-primary">
                     Tambah
                 </a>
                 </div>
@@ -18,7 +18,7 @@
                     <tr>
                       <th>Nomor</th>
                       <th>No. Invoice</th>
-                      <th>Nama Customer</th>
+                      <th>Nama Supplier</th>
                       <th>Total Harga</th>
                       <th>Jatuh Tempo</th>
                       <!-- <th>Status</th> -->
@@ -28,16 +28,16 @@
                   <tbody>
                     <?php 
                     $no = 1;
-                    foreach ($data_penjualan as $penjualan) {?>
+                    foreach ($data_pembelian as $pembelian) {?>
                       <tr>
                       <td><?= $no++ ?></td>
-                      <td><?= $penjualan->no_invoice; ?></td>
-                      <td><?= $penjualan->nama_customer; ?></td>
-                      <td><?= $penjualan->total_harga; ?></td>
-                      <td><?= $penjualan->tgl_jatuh_tempo; ?></td>
+                      <td><?= $pembelian->no_invoice; ?></td>
+                      <td><?= $pembelian->nama_supplier; ?></td>
+                      <td><?= $pembelian->total_harga; ?></td>
+                      <td><?= $pembelian->tgl_jatuh_tempo; ?></td>
                       <!-- <td>Status</td> -->
-                      <td><a href="<?= base_url('penjualan/detail/'.$penjualan->id); ?>" class="btn btn-warning" >Detail</a>
-                      <button class ="btn btn-danger btn-delete" data-id="<?= $penjualan->id?>"><i class="fas fa-trash"></i></button></td>
+                      <td><a href="<?= base_url('pembelian/detail/'.$pembelian->id); ?>" class="btn btn-warning" >Detail</a>
+                      <button class ="btn btn-danger btn-delete" data-id="<?= $pembelian->id?>"><i class="fas fa-trash"></i></button></td>
                     </tr>
                     <?php } ?>
                   </tbody>
@@ -67,7 +67,7 @@
                 if (result.isConfirmed){
 
                   $.ajax({
-                    url:"<?php echo base_url('penjualan/delete'); ?>",
+                    url:"<?php echo base_url('pembelian/delete'); ?>",
                     type: "POST",
                     cache: false,
                     data: {

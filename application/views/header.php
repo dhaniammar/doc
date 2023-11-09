@@ -220,6 +220,16 @@
           </li>
 
           <li class="nav-item">
+            <a href="<?= base_url('pembelian')?>" class="nav-link">
+              <i class="nav-icon fas fa-dollar-sign"></i>
+              <p>
+                Pembelian
+                <!-- <span class="badge badge-info right">2</span> -->
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="<?= base_url('user')?>" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
