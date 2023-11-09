@@ -1,6 +1,6 @@
 <?php 
 
-class penjualan extends CI_Controller {
+class Penjualan extends CI_Controller {
 
     public function __construct()
     {
@@ -83,9 +83,20 @@ class penjualan extends CI_Controller {
 
             $this->db->insert('detail_penjualan', $data_produk);
 
+            // Kurangi Stok
+            // Update Produk set stok=stok-qtypenjualan where id_porduk="idproduk"
+            $this->db->query("UPDATE produk SET stok=stok-".$post['qty'][$i]." where id=".$post['id_produk'][$i]);
+
         }
+        
 
         redirect('penjualan','refresh');
+
+        // Kurangi Stok
+        // Update Produk set stok=stok-qtypenjualan where id_porduk="idproduk"
+        
+        
+
     }
 
     public function detail($id){
@@ -118,6 +129,36 @@ class penjualan extends CI_Controller {
         );
         echo json_encode($hasil);
 
+    }
+
+    public function faktur($id){
+        // ambil data penjualan
+        $penjualan        = $this->penjualan->get_penjualan($id);
+        // ambil detail penjualan
+        $detail_penjualan = $this->penjualan->get_detail_penjualan($id);
+        // tampil data
+        $data = array(
+            'title' => 'Faktur/Invoice',
+            'penjualan' => $penjualan,
+            'detail_penjualan' => $detail_penjualan,
+        );
+
+        $this->load->view('penjualan/faktur', $data);
+    }
+
+    public function surat($id){
+        // ambil data penjualan
+        $penjualan        = $this->penjualan->get_penjualan($id);
+        // ambil detail penjualan
+        $detail_penjualan = $this->penjualan->get_detail_penjualan($id);
+        // tampil data
+        $data = array(
+            'title' => 'Surat Jalan',
+            'penjualan' => $penjualan,
+            'detail_penjualan' => $detail_penjualan,
+        );
+
+        $this->load->view('penjualan/surat', $data);
     }
 }
 

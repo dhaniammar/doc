@@ -33,7 +33,7 @@
                       <td><?= $no++ ?></td>
                       <td><?= $pembelian->no_invoice; ?></td>
                       <td><?= $pembelian->nama_supplier; ?></td>
-                      <td><?= $pembelian->total_harga; ?></td>
+                      <td><?= rupiah($pembelian->total_harga); ?></td>
                       <td><?= $pembelian->tgl_jatuh_tempo; ?></td>
                       <!-- <td>Status</td> -->
                       <td><a href="<?= base_url('pembelian/detail/'.$pembelian->id); ?>" class="btn btn-warning" >Detail</a>

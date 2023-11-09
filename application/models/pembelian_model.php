@@ -33,7 +33,7 @@ class pembelian_model extends CI_Model {
     }
 
     public function get_resume(){
-        $this->db->select("sum(total_harga) as omset, count(id) as total_pembelian");
+        $this->db->select("sum(total_harga) as nominal, count(id) as total_pembelian");
         $this->db->from("pembelian");
         return $this->db->get()->row();
 

@@ -1,6 +1,6 @@
 <?php 
 
-class pembelian extends CI_Controller {
+class Pembelian extends CI_Controller {
 
     public function __construct()
     {
@@ -81,6 +81,9 @@ class pembelian extends CI_Controller {
             );
 
             $this->db->insert('detail_pembelian', $data_produk);
+            // Tambah Stok
+            // Update Produk set stok=stok+qtypenjualan where id_porduk="idproduk"
+            $this->db->query("UPDATE produk SET stok=stok+".$post['qty'][$i]." where id=".$post['id_produk'][$i]);
 
         }
 

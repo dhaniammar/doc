@@ -1,6 +1,6 @@
 <?php
 
-class supplier extends CI_Controller {
+class Supplier extends CI_Controller {
 
     public function __construct(){
 

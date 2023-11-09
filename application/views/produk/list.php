@@ -35,11 +35,11 @@
                       <td><?= $no; ?></td>
                       <td><?= $prd->nama_produk?></td>
                       <td><img src="<?= base_url("uploads/produk/".$prd->foto_produk) ?>" alt="" width="100px" style="border-radius:50%"></td>
-                      <td><?= $prd->harga_beli ?></td>
-                      <td><?= $prd->harga_jual ?></td>
+                      <td><?= rupiah($prd->harga_beli) ?></td>
+                      <td><?= rupiah($prd->harga_jual) ?></td>
                       <td><?= $prd->varian ?></td>
                       <td><?= $prd->stok ?></td>
-                      <td><?= $prd->harga_jual - $prd->harga_beli ?></td>
+                      <td><?= rupiah($prd->harga_jual - $prd->harga_beli) ?></td>
                       <td><button class ="btn btn-primary btn-edit" data-id="<?= $prd->id?>"><i class="fas fa-pencil-alt"></i></button>
                       <button class ="btn btn-danger btn-delete" data-id="<?= $prd->id?>"><i class="fas fa-trash"></i></button></td>
                       </tr>

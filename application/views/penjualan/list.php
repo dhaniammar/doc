@@ -33,7 +33,7 @@
                       <td><?= $no++ ?></td>
                       <td><?= $penjualan->no_invoice; ?></td>
                       <td><?= $penjualan->nama_customer; ?></td>
-                      <td><?= $penjualan->total_harga; ?></td>
+                      <td><?= rupiah($penjualan->total_harga); ?></td>
                       <td><?= $penjualan->tgl_jatuh_tempo; ?></td>
                       <!-- <td>Status</td> -->
                       <td><a href="<?= base_url('penjualan/detail/'.$penjualan->id); ?>" class="btn btn-warning" >Detail</a>

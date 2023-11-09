@@ -75,9 +75,9 @@
                                 <tr>
                                     <td><?= $detail ->nama_produk; ?></td>
                                     <td><?= $detail ->qty; ?></td>
-                                    <td><?= $detail ->harga_jual; ?></td>
+                                    <td><?= rupiah($detail ->harga_jual); ?></td>
                                     <td><?= $detail ->diskon; ?></td>
-                                    <td><?= $detail ->total; ?></td>
+                                    <td><?= rupiah($detail ->total); ?></td>
                                 </tr>  
                                 <?php 
 
@@ -85,11 +85,25 @@
                             } ?>
                                 <tr>
                                     <th colspan ="4">Total</th>
-                                    <th><?= $total_keseluruhan ?></th>
+                                    <th><?= rupiah($total_keseluruhan) ?></th>
+                                </tr>
+                                <tr>
+                                    <th colspan ="4">Total Dibayar</th>
+                                    <th><?= rupiah($penjualan->total_pembayaran); ?></th>
+                                </tr>
+                                <tr>
+                                    <th colspan ="4">Sisa Tagihan</th>
+                                    <th><?= rupiah($total_keseluruhan-($penjualan->total_pembayaran)); ?></th>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                    <div class="col-12 ">
+                        <a href="<?= base_url("penjualan/faktur/".$penjualan->id); ?>" class="btn btn-primary float-right" target="_blank">Cetak Invoice</a>
+                        <a href="<?= base_url("penjualan/surat/".$penjualan->id); ?>" class="btn btn-danger float-right mr-2" target="_blank">Cetak Surat</a>
+                    </div>
+                    
+                        
                     
                 </div>
                 

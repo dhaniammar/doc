@@ -75,9 +75,9 @@
                                 <tr>
                                     <td><?= $detail ->nama_produk; ?></td>
                                     <td><?= $detail ->qty; ?></td>
-                                    <td><?= $detail ->harga_beli; ?></td>
+                                    <td><?= rupiah($detail ->harga_beli); ?></td>
                                     <td><?= $detail ->diskon; ?></td>
-                                    <td><?= $detail ->total; ?></td>
+                                    <td><?= rupiah($detail ->total); ?></td>
                                 </tr>  
                                 <?php 
 
@@ -85,7 +85,15 @@
                             } ?>
                                 <tr>
                                     <th colspan ="4">Total</th>
-                                    <th><?= $total_keseluruhan ?></th>
+                                    <th><?= rupiah($total_keseluruhan) ?></th>
+                                </tr>
+                                <tr>
+                                    <th colspan ="4">Total Dibayar</th>
+                                    <th><?= rupiah($pembelian->total_pembayaran); ?></th>
+                                </tr>
+                                <tr>
+                                    <th colspan ="4">Sisa Tagihan</th>
+                                    <th><?= rupiah($total_keseluruhan-($pembelian->total_pembayaran)); ?></th>
                                 </tr>
                             </tbody>
                         </table>
