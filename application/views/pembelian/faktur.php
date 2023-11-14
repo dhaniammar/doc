@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Surat Jalan Toko Coding</title>
+    <title>Invoice Toko Coding</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   </head>
   <body>
@@ -19,24 +19,23 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-6">
-
-                        <div class="form-group">
-                            <label for="" class="fw-bold">Customer</label>
-                            <p><?= $penjualan->nama_customer ?></p>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Alamat</label>
-                            <p><?= $penjualan->alamat_customer ?></p>
+                    <div class="form-group">
+                            <label for="" class="fw-bold">Supplier</label>
+                            <p><?= $pembelian->nama_supplier ?></p>
+                            </div>
+                            <div class="form-group">
+                            <label for="" classs="fw-bold">Alamat</label>
+                            <p><?= $pembelian->alamat_supplier ?></p>
                             </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="" class="fw-bold">Tanggal Transaksi</label>
-                            <p><?= $penjualan->tgl_transaksi?></p>
+                            <p><?= $pembelian->tgl_transaksi?></p>
                         </div>
                         <div class="form-group">
                             <label for="" class="fw-bold">Tanggal Jatuh Tempo</label>
-                            <p><?= $penjualan->tgl_jatuh_tempo ?></p>
+                            <p><?= $pembelian->tgl_jatuh_tempo ?></p>
                         </div>
 
                     </div>
@@ -71,22 +70,28 @@
                                 <tr>
                                     <th>Nama Produk</th>
                                     <th>Qty</th>
+                                    <th>Harga</th>
+                                    <th>Diskon (%)</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody id="produk-list">
                                 <?php 
                                 $total_keseluruhan = 0;
-                                foreach($detail_penjualan as $detail){ ?> 
+                                foreach($detail_pembelian as $detail){ ?> 
                                 <tr>
                                     <td><?= $detail ->nama_produk; ?></td>
                                     <td><?= $detail ->qty; ?></td>
+                                    <td><?= $detail ->harga_beli; ?></td>
+                                    <td><?= $detail ->diskon; ?></td>
+                                    <td><?= $detail ->total; ?></td>
                                 </tr>  
                                 <?php 
 
-                                $total_keseluruhan += $detail->qty;
+                                $total_keseluruhan += $detail->total;
                             } ?>
                                 <tr>
-                                    <th>Total</th>
+                                    <th colspan ="4">Total</th>
                                     <th><?= $total_keseluruhan ?></th>
                                 </tr>
                             </tbody>

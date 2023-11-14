@@ -19,26 +19,24 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-6">
-
-                        <div class="form-group">
-                            <label for="" class="fw-bold">Customer</label>
-                            <p><?= $penjualan->nama_customer ?></p>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Alamat</label>
-                            <p><?= $penjualan->alamat_customer ?></p>
+                           <div class="form-group">
+                            <label for="" class="fw-bold">Supplier</label>
+                            <p><?= $pembelian->nama_supplier ?></p>
+                            </div>
+                            <div class="form-group">
+                            <label for="" class="fw-bold">Alamat</label>
+                            <p><?= $pembelian->alamat_supplier ?></p>
                             </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="" class="fw-bold">Tanggal Transaksi</label>
-                            <p><?= $penjualan->tgl_transaksi?></p>
+                            <p><?= $pembelian->tgl_transaksi?></p>
                         </div>
                         <div class="form-group">
                             <label for="" class="fw-bold">Tanggal Jatuh Tempo</label>
-                            <p><?= $penjualan->tgl_jatuh_tempo ?></p>
+                            <p><?= $pembelian->tgl_jatuh_tempo ?></p>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -76,7 +74,7 @@
                             <tbody id="produk-list">
                                 <?php 
                                 $total_keseluruhan = 0;
-                                foreach($detail_penjualan as $detail){ ?> 
+                                foreach($detail_pembelian as $detail){ ?> 
                                 <tr>
                                     <td><?= $detail ->nama_produk; ?></td>
                                     <td><?= $detail ->qty; ?></td>

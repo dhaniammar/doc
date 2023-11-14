@@ -17,14 +17,18 @@
             
             $this->load->model('penjualan_model', 'penjualan');
             $data_grafik = $this->db->query("SELECT sum(total_harga) as total, MONTH(tgl_transaksi) as bulan FROM penjualan GROUP BY MONTH(tgl_transaksi)")->result();
+            $debit = $this->penjualan->get_resume_debit();
             $penjualan = $this->penjualan->get_resume();
             $this->load->model('pembelian_model', 'pembelian');
+            $credit = $this->pembelian->get_resume_credit();
             $pembelian = $this->pembelian->get_resume();
             $data = array(
                 'title'    => 'Dashboard',
                 'penjualan'=> $penjualan,
                 'pembelian'=> $pembelian,
-                'data_grafik' => $data_grafik
+                'data_grafik' => $data_grafik,
+                'debit' => $debit,
+                'credit' => $credit
             );
 
             $this->load->view('header');

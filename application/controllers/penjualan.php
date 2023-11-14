@@ -104,11 +104,14 @@ class Penjualan extends CI_Controller {
         $penjualan        = $this->penjualan->get_penjualan($id);
         // ambil detail penjualan
         $detail_penjualan = $this->penjualan->get_detail_penjualan($id);
+        //ambil data history pembayaran
+        $pembayaran = $this->db->get_where('credit_debit', ['id_penjualan_pembelian'=>$id])->result();
         // tampil data
         $data = array(
             'title' => 'Detail Penjualan',
             'penjualan' => $penjualan,
             'detail_penjualan' => $detail_penjualan,
+            'history_pembayaran' => $pembayaran
         );
         $this->load->view('header');
         $this->load->view('penjualan/detail', $data);
@@ -160,6 +163,25 @@ class Penjualan extends CI_Controller {
 
         $this->load->view('penjualan/surat', $data);
     }
+
+    public function pembayaran(){
+        $id_penjualan = $this->input->post('id_penjualan');
+        $total_bayar  = $this->input->post('total_bayar');
+        $data = array(
+            'debit' => $total_bayar,
+            'id_penjualan_pembelian' => $id_penjualan,
+            'tgl_transaksi' => date('Y-m-d')
+        );
+        $this->db->insert('credit_debit', $data);
+        $this->db->query("UPDATE penjualan SET total_pembayaran=total_pembayaran+".$total_bayar." WHERE id=".$id_penjualan);
+
+        $response = array(
+            'status' => true,   
+        );
+
+        echo json_encode($response);
+    }
+    
 }
 
 ?>

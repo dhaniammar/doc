@@ -24,6 +24,10 @@
                             <label for="" class="fw-bold">Customer</label>
                             <p><?= $penjualan->nama_customer ?></p>
                         </div>
+                        <div class="form-group">
+                            <label for="">Alamat</label>
+                            <p><?= $penjualan->alamat_customer ?></p>
+                            </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">

@@ -25,7 +25,7 @@ class Penjualan_model extends CI_Model {
     }
 
     public function get_penjualan($id){
-        $this->db->select("penjualan.*, customer.nama_customer");
+        $this->db->select("penjualan.*, customer.nama_customer, customer.alamat_customer");
         $this->db->from("penjualan");
         $this->db->join("customer","penjualan.id_customer=customer.id");
         $this->db->where("penjualan.id", $id);
@@ -35,6 +35,13 @@ class Penjualan_model extends CI_Model {
     public function get_resume(){
         $this->db->select("sum(total_harga) as omset, count(id) as total_penjualan");
         $this->db->from("penjualan");
+        return $this->db->get()->row();
+
+    }
+
+    public function get_resume_debit(){
+        $this->db->select("sum(debit) as debit");
+        $this->db->from("credit_debit");
         return $this->db->get()->row();
 
     }

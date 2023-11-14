@@ -177,7 +177,17 @@
                 <!-- <span class="badge badge-info right">2</span> -->
               </p>
             </a>
-          </li>    
+          </li>
+          
+          <li class="nav-item">
+            <a href="<?= base_url('credit_debit')?>" class="nav-link">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>
+                Accounting
+                <!-- <span class="badge badge-info right">2</span> -->
+              </p>
+            </a>
+          </li> 
 
           <li class="nav-item">
             <a href="<?= base_url('produk')?>" class="nav-link">

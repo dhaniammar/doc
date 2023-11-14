@@ -20,6 +20,8 @@
                       <th>No. Invoice</th>
                       <th>Nama Supplier</th>
                       <th>Total Harga</th>
+                      <th>Total Pembayaran</th>
+                      <th>Sisa</th>
                       <th>Jatuh Tempo</th>
                       <!-- <th>Status</th> -->
                       <th>Aksi</th>
@@ -34,6 +36,8 @@
                       <td><?= $pembelian->no_invoice; ?></td>
                       <td><?= $pembelian->nama_supplier; ?></td>
                       <td><?= rupiah($pembelian->total_harga); ?></td>
+                      <td><?= rupiah($pembelian->total_pembayaran); ?></td>
+                      <td><?= rupiah($pembelian->total_harga - ($pembelian->total_pembayaran)); ?></td>
                       <td><?= $pembelian->tgl_jatuh_tempo; ?></td>
                       <!-- <td>Status</td> -->
                       <td><a href="<?= base_url('pembelian/detail/'.$pembelian->id); ?>" class="btn btn-warning" >Detail</a>

@@ -20,22 +20,40 @@
                       <th>No. Invoice</th>
                       <th>Nama Customer</th>
                       <th>Total Harga</th>
+                      <th>Total Pembayaran</th>
+                      <th>Sisa</th>
                       <th>Jatuh Tempo</th>
-                      <!-- <th>Status</th> -->
+                      <th>Status</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php 
                     $no = 1;
-                    foreach ($data_penjualan as $penjualan) {?>
+                    foreach ($data_penjualan as $penjualan) {
+                      $status = "Paid";
+                      if ($penjualan->total_harga - ($penjualan->total_pembayaran) == 0) {
+                        $status = "Paid";
+                      } else {
+                        $status = "Open";
+                        if (date('Y-m-d') > $penjualan->tgl_jatuh_tempo ) {
+                          $status = "Overdue";
+                        } else {
+                          $status = "Open";
+                        }
+                        
+                      }
+                      
+                      ?>
                       <tr>
                       <td><?= $no++ ?></td>
                       <td><?= $penjualan->no_invoice; ?></td>
                       <td><?= $penjualan->nama_customer; ?></td>
                       <td><?= rupiah($penjualan->total_harga); ?></td>
+                      <td><?= rupiah($penjualan->total_pembayaran); ?></td>
+                      <td><?= rupiah($penjualan->total_harga - ($penjualan->total_pembayaran)); ?></td>
                       <td><?= $penjualan->tgl_jatuh_tempo; ?></td>
-                      <!-- <td>Status</td> -->
+                      <td><?= $status; ?></td>
                       <td><a href="<?= base_url('penjualan/detail/'.$penjualan->id); ?>" class="btn btn-warning" >Detail</a>
                       <button class ="btn btn-danger btn-delete" data-id="<?= $penjualan->id?>"><i class="fas fa-trash"></i></button></td>
                     </tr>

@@ -25,7 +25,7 @@ class pembelian_model extends CI_Model {
     }
 
     public function get_pembelian($id){
-        $this->db->select("pembelian.*, supplier.nama_supplier");
+        $this->db->select("pembelian.*, supplier.nama_supplier, supplier.alamat_supplier");
         $this->db->from("pembelian");
         $this->db->join("supplier","pembelian.id_supplier=supplier.id");
         $this->db->where("pembelian.id", $id);
@@ -35,6 +35,13 @@ class pembelian_model extends CI_Model {
     public function get_resume(){
         $this->db->select("sum(total_harga) as nominal, count(id) as total_pembelian");
         $this->db->from("pembelian");
+        return $this->db->get()->row();
+
+    }
+
+    public function get_resume_credit(){
+        $this->db->select("sum(credit) as credit");
+        $this->db->from("credit_debit");
         return $this->db->get()->row();
 
     }
